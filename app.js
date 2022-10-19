@@ -1,6 +1,7 @@
 const express = require('express')
 const mysql  = require('mysql')
 const myconn = require('express-myconnection')
+var cors = require('cors')
 
 const routes = require('./routes')
 
@@ -23,7 +24,7 @@ app.get('/', (req, res)=>{
     res.send('Welcome')
 })
 
-app.use('/seguimiento', routes)
+app.use('/seguimiento', routes, cors())
 
 
 app.listen(app.get('port'), ()=>{
