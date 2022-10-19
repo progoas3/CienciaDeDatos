@@ -23,7 +23,7 @@ app.use(express.json())
 app.get('/', (req, res)=>{
     res.send('Welcome')
 })
-app.use(cors("*"))
+app.use(cors())
 app.use('/seguimiento', routes)
 
 
