@@ -23,8 +23,8 @@ app.use(express.json())
 app.get('/', (req, res)=>{
     res.send('Welcome')
 })
-
-app.use('/seguimiento', routes, cors("*"))
+app.use(cors("*"))
+app.use('/seguimiento', routes)
 
 
 app.listen(app.get('port'), ()=>{
