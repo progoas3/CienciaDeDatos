@@ -24,7 +24,7 @@ app.get('/', (req, res)=>{
     res.send('Welcome')
 })
 
-app.use('/seguimiento', routes, cors())
+app.use('/seguimiento', routes, cors("*"))
 
 
 app.listen(app.get('port'), ()=>{
