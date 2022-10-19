@@ -15,6 +15,18 @@ routes.get('/:numero_accion', (req, res)=>{
     })
 } )
 
+routes.get('/', (req, res)=>{
+    req.getConnection((err, conn)=> {
+        if(err) return res.send(err)
+
+        conn.query('SELECT * FROM seguimiento', (err, rows)=>{
+            if(err) return res.send(err)
+
+            res.json(rows)
+        })
+    })
+} )
+
 
 
 routes.post('/', (req, res)=>{
