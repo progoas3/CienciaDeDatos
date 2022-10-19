@@ -5,7 +5,7 @@ const myconn = require('express-myconnection')
 const routes = require('./routes')
 
 const app = express()
-app.set('port', process.env.PORT || 9000)
+app.set('port', process.env.PORT || 3000)
 
 
 const dbOptions = {
