@@ -30,7 +30,7 @@ app.get('/', (req, res)=>{
     res.send('Welcome')
 })
 
-app.use('/seguimiento', routes)
+app.use('/seguimiento', cors(), routes)
 
 
 app.listen(app.get('port'), ()=>{
