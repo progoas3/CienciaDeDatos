@@ -1,6 +1,6 @@
 const express = require('express')
 const routes = express.Router()
-
+header("Access-Control-Allow-Origin: *");
 
 //rutas
 
