@@ -19,7 +19,11 @@ const dbOptions = {
     password: '8e1QkGTruM',
     database: 'sql10527072'
 }
-app.use(cors())
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
+app.use(cors(corsOptions))
  
 app.use(myconn(mysql, dbOptions, 'single'))
 app.use(express.json())
