@@ -66,7 +66,7 @@ routes.delete('/:id',cors(corsOptions),   (req, res)=>{
         var articulo = req.params.id
         if(err) return res.send(err)
 
-        conn.query('DELETE FROM seguimiento WHERE numero_accion = ?', [req.params.id], (err, rows)=>{
+        conn.query('DELETE FROM seguimiento WHERE id = ?', [req.params.id], (err, rows)=>{
             if(err || !articulo)
             {
                 return res.status(500).json({
