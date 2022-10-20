@@ -49,11 +49,11 @@ routes.post('/',cors(corsOptions),(req, res)=>{
     })
 } )
 
-routes.delete('/:numero_accion',cors(corsOptions),   (req, res)=>{
+routes.delete('/:id',cors(corsOptions),   (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
-        conn.query('DELETE FROM seguimiento WHERE numero_accion = ?', [req.params.numero_accion], (err, rows)=>{
+        conn.query('DELETE FROM seguimiento WHERE numero_accion = ?', [req.params.id], (err, rows)=>{
             if(err) return res.send(err)
 
             res.send('Eliminado')
