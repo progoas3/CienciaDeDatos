@@ -2,8 +2,10 @@ const express = require('express')
 const mysql  = require('mysql')
 const myconn = require('express-myconnection')
 var cors = require('cors')
-
+app.use(cors())
 const routes = require('./routes')
+
+
 
 const app = express()
 app.set('port', process.env.PORT || 3000)
@@ -23,7 +25,7 @@ app.use(express.json())
 app.get('/', (req, res)=>{
     res.send('Welcome')
 })
-app.use(cors())
+
 app.use('/seguimiento', routes)
 
 
