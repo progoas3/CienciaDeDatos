@@ -2,6 +2,7 @@ const express = require('express')
 const routes = express.Router()
 var cors = require('cors')
 
+
 var corsOptions = {
     origin: '*',
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -39,24 +40,45 @@ routes.get('/', cors(corsOptions), (req, res)=>{
 
 routes.post('/',cors(corsOptions),(req, res)=>{
     req.getConnection((err, conn)=> {
+        let parametros = req.body
+    const seguimiento =new Seguimiento(parametros)
         if(err) return res.send(err)
 
         conn.query('INSERT INTO seguimiento set ?',[req.body], (err, rows)=>{
-            if(err) return res.send(err)
+            if(err || !seguimiento)
+            {
+                return res.status(400).json({
+                    status: "Error",
+                    mensaje: "Metodo no agregado"
+                })
+            } 
 
-            res.send('seguimiento insert')
+            return res.status(200).json({
+                status: "Success",
+                mensaje: "Metodo  agregado"
+            })
         })
     })
 } )
 
 routes.delete('/:id',cors(corsOptions),   (req, res)=>{
     req.getConnection((err, conn)=> {
+        var articulo = req.params.id
         if(err) return res.send(err)
 
         conn.query('DELETE FROM seguimiento WHERE numero_accion = ?', [req.params.id], (err, rows)=>{
-            if(err) return res.send(err)
+            if(err || !articulo)
+            {
+                return res.status(500).json({
+                    status: "Error",
+                    mensaje: "Metodo no borrado"
+                })
+            } 
 
-            res.send('Eliminado')
+            return res.status(200).json({
+                status: "Success",
+                mensaje: "Metodo  borrado"
+            })
         })
     })
 } )
@@ -66,9 +88,18 @@ routes.put('/:numero_accion',cors(corsOptions),  (req, res)=>{
         if(err) return res.send(err)
 
         conn.query('UPDATE seguimiento set ? WHERE numero_accion = ?', [req.body, req.params.numero_accion], (err, rows)=>{
-            if(err) return res.send(err)
+            if(err || !articulo)
+            {
+                return res.status(500).json({
+                    status: "Error",
+                    mensaje: "Metodo no borrado"
+                })
+            } 
 
-            res.send('Modificado')
+            return res.status(200).json({
+                status: "Success",
+                mensaje: "Metodo  borrado"
+            })
         })
     })
 } )
