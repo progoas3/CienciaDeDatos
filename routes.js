@@ -1,10 +1,15 @@
 const express = require('express')
 const routes = express.Router()
+var cors = require('cors')
 
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  }
 
 //rutas
 
-routes.get('/:numero_accion', (req, res)=>{
+routes.get('/:numero_accion', cors(corsOptions), (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -16,7 +21,7 @@ routes.get('/:numero_accion', (req, res)=>{
     })
 } )
 
-routes.get('/',  (req, res)=>{
+routes.get('/', cors(corsOptions), (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -30,7 +35,7 @@ routes.get('/',  (req, res)=>{
 
 
 
-routes.post('/',(req, res)=>{
+routes.post('/',cors(corsOptions),(req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -42,7 +47,7 @@ routes.post('/',(req, res)=>{
     })
 } )
 
-routes.delete('/:numero_accion',   (req, res)=>{
+routes.delete('/:numero_accion',cors(corsOptions),   (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -54,7 +59,7 @@ routes.delete('/:numero_accion',   (req, res)=>{
     })
 } )
 
-routes.put('/:numero_accion',  (req, res)=>{
+routes.put('/:numero_accion',cors(corsOptions),  (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
