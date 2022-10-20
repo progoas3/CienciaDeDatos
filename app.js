@@ -4,7 +4,7 @@ const myconn = require('express-myconnection')
 var cors = require('cors')
 
 const routes = require('./routes')
-app.use(cors())
+
 
 
 
@@ -22,6 +22,7 @@ const dbOptions = {
 
 app.use(myconn(mysql, dbOptions, 'single'))
 app.use(express.json())
+app.use(cors())
 //rutas
 app.get('/', (req, res)=>{
     res.send('Welcome')
