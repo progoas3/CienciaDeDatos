@@ -2,8 +2,9 @@ const express = require('express')
 const mysql  = require('mysql')
 const myconn = require('express-myconnection')
 var cors = require('cors')
-app.use(cors())
+
 const routes = require('./routes')
+app.use(cors())
 
 
 
