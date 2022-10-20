@@ -3,7 +3,7 @@ const routes = express.Router()
 
 //rutas
 
-routes.get('/:numero_accion', (req, res)=>{
+routes.get('/:numero_accion', cors(), (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -15,7 +15,7 @@ routes.get('/:numero_accion', (req, res)=>{
     })
 } )
 
-routes.get('/', (req, res)=>{
+routes.get('/', cors(), (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -29,7 +29,7 @@ routes.get('/', (req, res)=>{
 
 
 
-routes.post('/', (req, res)=>{
+routes.post('/', cors(),(req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -41,7 +41,7 @@ routes.post('/', (req, res)=>{
     })
 } )
 
-routes.delete('/:numero_accion', (req, res)=>{
+routes.delete('/:numero_accion', cors(),  (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 
@@ -53,7 +53,7 @@ routes.delete('/:numero_accion', (req, res)=>{
     })
 } )
 
-routes.put('/:numero_accion', (req, res)=>{
+routes.put('/:numero_accion', cors(), (req, res)=>{
     req.getConnection((err, conn)=> {
         if(err) return res.send(err)
 

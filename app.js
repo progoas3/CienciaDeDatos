@@ -20,6 +20,8 @@ const dbOptions = {
     database: 'sql10527072'
 }
 
+
+ 
 app.use(myconn(mysql, dbOptions, 'single'))
 app.use(express.json())
 app.use(cors())
