@@ -19,16 +19,11 @@ const dbOptions = {
     password: '8e1QkGTruM',
     database: 'sql10527072'
 }
-var corsOptions = {
-    origin: '*',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
-
-
+app.use(cors())
  
 app.use(myconn(mysql, dbOptions, 'single'))
 app.use(express.json())
-app.use(cors(corsOptions))
+
 //rutas
 app.get('/', (req, res)=>{
     res.send('Welcome')
