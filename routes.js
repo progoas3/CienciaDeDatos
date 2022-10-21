@@ -40,12 +40,23 @@ routes.get('/', cors(corsOptions), (req, res)=>{
 
 routes.post('/',cors(corsOptions),(req, res)=>{
     req.getConnection((err, conn)=> {
+        let parametros = req.body
+    const seguimiento =new Seguimiento(parametros)
         if(err) return res.send(err)
 
         conn.query('INSERT INTO seguimiento set ?',[req.body], (err, rows)=>{
-            if(err) return res.send(err)
+            if(err || !seguimiento)
+            {
+                return res.status(400).json({
+                    status: "Error",
+                    mensaje: "Metodo no agregado"
+                })
+            } 
 
-            res.send('seguimiento insert')
+            return res.status(200).json({
+                status: "Success",
+                mensaje: "Metodo  agregado"
+            })
         })
     })
 } )
@@ -74,6 +85,7 @@ routes.delete('/:id',cors(corsOptions),   (req, res)=>{
 
 routes.put('/:numero_accion',cors(corsOptions),  (req, res)=>{
     req.getConnection((err, conn)=> {
+        if(err) return res.send(err)
 
         conn.query('UPDATE seguimiento set ? WHERE numero_accion = ?', [req.body, req.params.numero_accion], (err, rows)=>{
             if(err || !articulo)
@@ -92,4 +104,3 @@ routes.put('/:numero_accion',cors(corsOptions),  (req, res)=>{
     })
 } )
 module.exports = routes
-
